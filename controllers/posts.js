@@ -14,6 +14,17 @@ module.exports = (app) => {
       console.log(post);
       return res.redirect(`/`);
     })
+    
   });
 
+  app.get('/', (req, res) => {
+    Post.find({})
+    .then(posts => {
+      res.render("posts-index", { posts });
+    })
+    .catch(err => {
+      console.log(err.message);
+    })
+    });
 };
+

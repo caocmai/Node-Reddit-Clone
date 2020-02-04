@@ -24,7 +24,7 @@ app.set('view engine', 'handlebars');
 
 // app.get('/', (req, res) => res.send('Hello World!'))
 
-app.get('/', (req, res) => res.render('home'))
+app.get('/', (req, res) => res.render('posts-index'))
 
 app.get('/posts/new', (req, res) => res.render('posts-new'))
 
