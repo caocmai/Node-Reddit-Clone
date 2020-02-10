@@ -14,7 +14,6 @@ module.exports = (app) => {
       console.log(post);
       return res.redirect(`/`);
     })
-    
   });
 
   app.get('/', (req, res) => {
@@ -26,5 +25,28 @@ module.exports = (app) => {
       console.log(err.message);
     })
     });
+
+  // SUBREDDIT
+  app.get("/n/:subreddit", function(req, res) {
+    Post.find({ subreddit: req.params.subreddit })
+      .then(posts => {
+        res.render("posts-index", { posts });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+
+  app.get("posts/:id", function(req, res) {
+    // LOOK UP THE POST
+    Post.findById(req.params.id)
+      .then(post => {
+        res.render("posts-show", { post });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  });
+
 };
 
