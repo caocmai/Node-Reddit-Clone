@@ -3,6 +3,7 @@ const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 
+
 const app = express()
 const port = 3000
 
@@ -16,6 +17,8 @@ app.use(expressValidator());
 // Set db
 require('./data/reddit-db');
 require('./controllers/posts.js')(app);
+require('./controllers/comments.js')(app);
+
 
 // Middleware
 

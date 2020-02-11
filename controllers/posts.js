@@ -10,9 +10,7 @@ module.exports = (app) => {
     // SAVE INSTANCE OF POST MODEL TO DB
     post.save((err, post) => {
       // REDIRECT TO THE ROOT
-      console.log(err);
-      console.log(post);
-      return res.redirect(`/`);
+      return res.redirect('/');
     })
   });
 
@@ -37,15 +35,15 @@ module.exports = (app) => {
       });
   });
 
-  app.get("posts/:id", function(req, res) {
+  app.get('/posts/:id', function (req, res) {
     // LOOK UP THE POST
-    Post.findById(req.params.id)
-      .then(post => {
-        res.render("posts-show", { post });
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
+    Post.findById(req.params.id).populate('comments').then((post) => {
+        res.render('posts-show', {
+            post
+        })
+    }).catch((err) => {
+        console.log(err.message)
+    })
   });
 
 };
