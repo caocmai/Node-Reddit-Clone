@@ -24,7 +24,6 @@ require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
 require('./controllers/auth.js')(app);
 
-
 // Middleware
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -33,9 +32,8 @@ app.set('view engine', 'handlebars');
 
 // app.get('/', (req, res) => res.send('Hello World!'))
 
-app.get('/', (req, res) => res.render('posts-index'))
+// app.get('/', (req, res) => res.render('posts-index'))
 
-app.get('/posts/new', (req, res) => res.render('posts-new'));
 
 // Checks Authentication 
 var checkAuth = (req, res, next) => {
