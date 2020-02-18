@@ -20,7 +20,7 @@ module.exports = (app) => {
     var currentUser = req.user;
     console.log("this is the current user\n\n\n\n")
     console.log(currentUser)
-    console.log(req)
+    // console.log(req)
 
     Post.find().populate('author')
       .then(posts => {
