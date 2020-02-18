@@ -15,6 +15,22 @@ module.exports = (app) => {
   //   })
   // });
 
+  app.get("/", (req, res) => {
+    var currentUser = req.user;
+    console.log("this is the current user\n\n\n\n")
+    console.log(currentUser)
+    console.log(req)
+
+    Post.find({})
+      .then(posts => {
+        res.render("posts-index", { posts, currentUser });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  });
+
+  app.get("/posts/new", (req, res) => res.render("posts-new"));
 
 
   // CREATE
@@ -30,16 +46,7 @@ module.exports = (app) => {
     }
 });
 
-  app.get('/', (req, res) => {
-    Post.find({})
-    .then(posts => {
-      res.render("posts-index", { posts });
-    })
-    .catch(err => {
-      console.log(err.message);
-    })
-    });
-
+  
   // SUBREDDIT
   app.get("/n/:subreddit", function(req, res) {
     Post.find({ subreddit: req.params.subreddit })
@@ -51,7 +58,6 @@ module.exports = (app) => {
       });
   });
 
-  app.get("/posts/new", (req, res) => res.render("posts-new"));
 
 
   app.get('/posts/:id', function (req, res) {
