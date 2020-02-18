@@ -73,19 +73,33 @@ module.exports = (app) => {
   });
 
 
+  //Show OLD
+  // app.get("/posts/:id", function (req, res) {
+  //   var currentUser = req.user;
+  //   // LOOK UP THE POST
 
-  app.get("/posts/:id", function (req, res) {
-    var currentUser = req.user;
-    // LOOK UP THE POST
+  //   Post.findById(req.params.id).populate('comments').populate('author')
+  //       .then(post => {
+  //           res.render("posts-show", { post, currentUser });  
+  //       })
+  //       .catch(err => {
+  //           console.log(err.message);
+  //       });
+  // });
 
-    Post.findById(req.params.id).populate('comments').populate('author')
-        .then(post => {
-            res.render("posts-show", { post, currentUser });  
-        })
-        .catch(err => {
-            console.log(err.message);
-        });
-  });
+  // SHOW
+app.get("/posts/:id", function (req, res) {
+  var currentUser = req.user;
+  // LOOK UP THE POST
+
+  Post.findById(req.params.id).populate({path:'comments', populate: {path: 'author'}}).populate('author')
+      .then(post => {
+          res.render("posts-show", { post, currentUser });  
+      })
+      .catch(err => {
+          console.log(err.message);
+      });
+});
 
 };
 
