@@ -9,9 +9,11 @@ const CommentSchema = new Schema({
 
 });
 
-// Always populate the author field
+// Always populate the author field and comments
 CommentSchema
     .pre('findOne', Populate('author'))
     .pre('find', Populate('author'))
+    .pre('findOne', Populate('comments'))
+    .pre('find', Populate('comments'))
 
 module.exports = mongoose.model("Comment", CommentSchema);
