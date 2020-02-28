@@ -12,7 +12,9 @@ const port = 3000
 
 
 
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
+
 
 // Use Body Parser
 app.use(bodyParser.json());
@@ -23,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Add after body parser initialization!
 app.use(expressValidator());
 app.use(cookieParser());
+
 
 // Checks Authentication 
 var checkAuth = (req, res, next) => {
@@ -40,8 +43,7 @@ var checkAuth = (req, res, next) => {
 };
 app.use(checkAuth);
 
-
-
+ 
 // Set db
 require('dotenv').config();
 require('./data/reddit-db');

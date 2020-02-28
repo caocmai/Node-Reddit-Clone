@@ -17,6 +17,7 @@ module.exports = (app) => {
             .save()
             .then(user => {
             var token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
+            // make it so cook and send the response
             res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
             res.redirect("/");
             })
@@ -55,7 +56,7 @@ module.exports = (app) => {
                 // Password does not match
                 return res.status(401).send({ message: "Wrong Username or password" });
             }
-            // Create a token
+            // Create a token, this is were you create the token
             const token = jwt.sign({ _id: user._id, username: user.username }, process.env.SECRET, {
                 expiresIn: "60 days"
             });

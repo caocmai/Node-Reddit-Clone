@@ -73,9 +73,7 @@ describe('Posts', function () {
             .catch(function (err) {
                 done(err);
             });
-
     });
-
 
     after(function (done) {
         Post.findOneAndDelete(newPost)
@@ -83,7 +81,7 @@ describe('Posts', function () {
             agent.close()
 
             User.findOneAndDelete({
-                username: user.username
+                username: user.username,
             })
                 .then(function (res) {
                     done()

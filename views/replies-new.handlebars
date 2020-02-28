@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
+    {{!-- Need to get add method post inorder to get get to show --}}
     <form action="/posts/{{post._id}}/comments/{{comment._id}}/replies" method="post">
       <div class="form-group">
         <textarea name="content" class="form-control" id="reply-content" placeholder="Reply Here"></textarea>
