@@ -43,7 +43,7 @@ module.exports = (app) => {
         post.upVotes = [];
         post.downVotes = [];
         post.voteScore = 0;
-
+        
         post
             .save()
             .then(post => {

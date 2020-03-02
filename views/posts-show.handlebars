@@ -1,9 +1,10 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <a href="{{post.url}}" class="lead">{{post.title}}</a>
+    <small>Vote Score: {{ post.voteScore }} </small>
     <p>{{post.summary}}</p>
   </div><br>
-  <p>By: {{post.author.username}}</p>
+  <p>Post By: {{post.author.username}}</p>
 </div>
 
 <form action="/posts/{{post._id}}/comments" method="post">
